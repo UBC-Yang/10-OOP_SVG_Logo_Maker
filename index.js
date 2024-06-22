@@ -1,7 +1,8 @@
 // Import all necessary files for application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {circle, square, triangle} = require('./lib/shapes');
+const path = require('path');
+const { Circle, Square, Triangle } = require('./lib/shapes');
 
 // Array of questions for user input
 const questions = [
@@ -9,7 +10,8 @@ const questions = [
     {
         type: 'input',
         name: 'logoText',
-        message: 'Enter text for the logo. (Must npt be more than 3 characters)'
+        message: 'Enter text for the logo. (Must npt be more than 3 characters)',
+        validate: input => input.length <= 3 || 'Text must be 3 characters or fewer.'
     },
     // Enter a text color
     {
@@ -38,23 +40,25 @@ const questions = [
 
 // Function to generate SVG content
 function generateSVG({logoText, textColor, shape, shapeColor}) {
-    let shapeElement;
+    let shapeInstance;
 
     switch (shape) {
         case 'circle':
-            shapeElement = circle(shapeColor);
+            shapeInstance = new Circle();
             break;
         case 'square':
-            shapeElement = square(shapeColor);
+            shapeInstance = new Square();
             break;
         case 'triangle':
-            shapeElement = triangle(shapeColor);
+            shapeInstance = new Triangle();
             break;
     }
 
+    shapeInstance.setColor(shapeColor)
+
     return `
     <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-        ${shapeElement}
+        ${shapeInstance.render()}
         <text x="150" y="190" fill="${textColor}" text-anchor="middle" font-size="30px">${logoText}</text>
     </svg>
     `.trim();
@@ -72,7 +76,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer.prompt(questions).then(answers => {
         const svgContent = generateSVG(answers);
-        writeToFile('logo.svg', svgContent);
+        writeToFile('examples/logo.svg', svgContent);
     }).catch(error => {
         console.error("An error occurred:", error);
     });
