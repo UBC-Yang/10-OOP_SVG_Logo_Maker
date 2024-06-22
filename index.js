@@ -6,11 +6,11 @@ const { Circle, Square, Triangle } = require('./lib/shapes');
 
 // Array of questions for user input
 const questions = [
-    // Enter text for the logo. (Must npt be more than 3 characters)
+    // Enter text for the logo. (Must not be more than 3 characters)
     {
         type: 'input',
         name: 'logoText',
-        message: 'Enter text for the logo. (Must npt be more than 3 characters)',
+        message: 'Enter text for the logo. (Must not be more than 3 characters)',
         validate: input => input.length <= 3 || 'Text must be 3 characters or fewer.'
     },
     // Enter a text color
