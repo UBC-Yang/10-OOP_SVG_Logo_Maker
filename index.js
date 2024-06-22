@@ -59,7 +59,7 @@ function generateSVG({logoText, textColor, shape, shapeColor}) {
     return `
     <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         ${shapeInstance.render()}
-        <text x="150" y="190" fill="${textColor}" text-anchor="middle" font-size="30px">${logoText}</text>
+        <text x="150" y="120" fill="${textColor}" text-anchor="middle" font-size="65px">${logoText}</text>
     </svg>
     `.trim();
 }
