@@ -36,19 +36,46 @@ const questions = [
     }
 ];
 
+// Function to generate SVG content
+function generateSVG({logoText, textColor, shape, shapeColor}) {
+    let shapeElement;
+
+    switch (shape) {
+        case 'circle':
+            shapeElement = circle(shapeColor);
+            break;
+        case 'square':
+            shapeElement = square(shapeColor);
+            break;
+        case 'triangle':
+            shapeElement = triangle(shapeColor);
+            break;
+    }
+
+    return `
+    <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+        ${shapeElement}
+        <text x="150" y="190" fill="${textColor}" text-anchor="middle" font-size="30px">${logoText}</text>
+    </svg>
+    `.trim();
+}
+
 // Function write the SVG file from user input
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
         if (err) throw new Error(err);
-
         console.log('LOGO.svg generated')
     })
 };
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions)
-    
+    inquirer.prompt(questions).then(answers => {
+        const svgContent = generateSVG(answers);
+        writeToFile('logo.svg', svgContent);
+    }).catch(error => {
+        console.error("An error occurred:", error);
+    });
 }
 
 // Function call to initialize app
