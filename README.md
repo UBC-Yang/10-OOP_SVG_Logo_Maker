@@ -12,4 +12,4 @@ https://github.com/UBC-Yang/10-OOP_SVG_Logo_Maker/assets/164443710/79e1e2e4-ae71
 
 ## Link
 
-GitHub: https://github.com/UBC-Yang/10-OOP_SVG_Logo_Maker
+GitHub: https://github.com/UBC-Yang/SVG_Logo_Maker
