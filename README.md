@@ -4,7 +4,11 @@ Your task is to build a Node.js command-line application that takes in user inpu
 
 ## Walkthrough Video
 
-[Walkthrough video](https://drive.google.com/file/d/1tlQSBjNy0SKF3DiGNMZQf8V_ShDg9cbw/preview)
+
+
+https://github.com/UBC-Yang/10-OOP_SVG_Logo_Maker/assets/164443710/79e1e2e4-ae71-4015-a99a-af81046200db
+
+
 
 ## Link
 
